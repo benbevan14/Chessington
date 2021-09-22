@@ -13,15 +13,26 @@ namespace Chessington.GameEngine.Pieces
         {
             Square currentSquare = board.FindPiece(this);
 
-            switch (this.Player)
+            List<Square> newMoves = new List<Square>();
+
+            if (Player == Player.White)
             {
-                case Player.White:
-                    return new List<Square> { Square.At(currentSquare.Row - 1, currentSquare.Col) };
-                case Player.Black:
-                    return new List<Square> { Square.At(currentSquare.Row + 1, currentSquare.Col) };
-                default:
-                    return new List<Square>();
+                newMoves.Add(Square.At(currentSquare.Row - 1, currentSquare.Col));
+                if (currentSquare.Row == 7)
+                {
+                    newMoves.Add(Square.At(currentSquare.Row - 2, currentSquare.Col));
+                }
             }
+            else if (Player == Player.Black)
+            {
+                newMoves.Add(Square.At(currentSquare.Row + 1, currentSquare.Col));
+                if (currentSquare.Row == 1)
+                {
+                    newMoves.Add(Square.At(currentSquare.Row + 2, currentSquare.Col));
+                }
+            }
+
+            return newMoves;
         }
     }
 }
