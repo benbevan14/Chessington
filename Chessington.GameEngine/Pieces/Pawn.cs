@@ -18,7 +18,7 @@ namespace Chessington.GameEngine.Pieces
             if (Player == Player.White)
             {
                 newMoves.Add(Square.At(currentSquare.Row - 1, currentSquare.Col));
-                if (currentSquare.Row == 7)
+                if (currentSquare.Row == 6)
                 {
                     newMoves.Add(Square.At(currentSquare.Row - 2, currentSquare.Col));
                 }
