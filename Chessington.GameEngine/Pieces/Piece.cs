@@ -104,6 +104,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkSq = Square.At(square.Row - rowChange, col);
                 if (board.GetPiece(checkSq) == null)
                     newMoves.Add(checkSq);
+                else if (board.GetPiece(checkSq).Player != this.Player)
+                {
+                    newMoves.Add(checkSq);
+                    break;
+                }
                 else
                     break;
             }
@@ -119,6 +124,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkSq = Square.At(square.Row - rowChange, col);
                 if (board.GetPiece(checkSq) == null)
                     newMoves.Add(checkSq);
+                else if (board.GetPiece(checkSq).Player != this.Player)
+                {
+                    newMoves.Add(checkSq);
+                    break;
+                }
                 else
                     break;
             }
@@ -134,6 +144,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkSq = Square.At(square.Row + rowChange, col);
                 if (board.GetPiece(checkSq) == null)
                     newMoves.Add(checkSq);
+                else if (board.GetPiece(checkSq).Player != this.Player)
+                {
+                    newMoves.Add(checkSq);
+                    break;
+                }
                 else
                     break;
             }
@@ -149,6 +164,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkSq = Square.At(square.Row + rowChange, col);
                 if (board.GetPiece(checkSq) == null)
                     newMoves.Add(checkSq);
+                else if (board.GetPiece(checkSq).Player != this.Player)
+                {
+                    newMoves.Add(checkSq);
+                    break;
+                }
                 else
                     break;
             }
