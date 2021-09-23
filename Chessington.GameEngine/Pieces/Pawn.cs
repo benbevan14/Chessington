@@ -28,12 +28,27 @@ namespace Chessington.GameEngine.Pieces
                 Square right = Square.At(currentSquare.Row + dir, currentSquare.Col + 1);
                 if (board.GetPiece(right) != null && board.GetPiece(right).Player != Player)
                     newMoves.Add(right);
+
+                if (currentSquare.Row == startRow + (3 * dir))
+                {
+                    Square nextToRight = Square.At(currentSquare.Row, currentSquare.Col + 1);
+                    if (board.GetPiece(nextToRight) != null && board.GetPiece(nextToRight).Player != Player)
+                        newMoves.Add(Square.At(currentSquare.Row + dir, currentSquare.Col + 1));
+                }
+                
             }
             if (currentSquare.Col > 0)
             {
                 Square left = Square.At(currentSquare.Row + dir, currentSquare.Col - 1);
                 if (board.GetPiece(left) != null && board.GetPiece(left).Player != Player)
                     newMoves.Add(left);
+
+                if (currentSquare.Row == startRow + (3 * dir))
+                {
+                    Square nextToLeft = Square.At(currentSquare.Row, currentSquare.Col - 1);
+                    if (board.GetPiece(nextToLeft) != null && board.GetPiece(nextToLeft).Player != Player)
+                        newMoves.Add(Square.At(currentSquare.Row + dir, currentSquare.Col - 1));
+                }
             }
 
             // If there's a piece in front of the pawn it can't move, so return empty list
