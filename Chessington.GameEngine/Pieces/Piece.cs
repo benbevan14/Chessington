@@ -31,6 +31,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkRow = Square.At(square.Row, col);
                 if (board.GetPiece(checkRow) == null)
                     newMoves.Add(checkRow);
+                else if (board.GetPiece(checkRow).Player != this.Player)
+                {
+                    newMoves.Add(checkRow);
+                    break;
+                }
                 else
                     break;
             }
@@ -40,6 +45,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkRow = Square.At(square.Row, col);
                 if (board.GetPiece(checkRow) == null)
                     newMoves.Add(checkRow);
+                else if (board.GetPiece(checkRow).Player != this.Player)
+                {
+                    newMoves.Add(checkRow);
+                    break;
+                }
                 else
                     break;
             }
@@ -49,6 +59,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkCol = Square.At(row, square.Col);
                 if (board.GetPiece(checkCol) == null)
                     newMoves.Add(checkCol);
+                else if (board.GetPiece(checkCol).Player != this.Player)
+                {
+                    newMoves.Add(checkCol);
+                    break;
+                }
                 else
                     break;
             }
@@ -58,6 +73,11 @@ namespace Chessington.GameEngine.Pieces
                 Square checkCol = Square.At(row, square.Col);
                 if (board.GetPiece(checkCol) == null)
                     newMoves.Add(checkCol);
+                else if (board.GetPiece(checkCol).Player != this.Player)
+                {
+                    newMoves.Add(checkCol);
+                    break;
+                }
                 else
                     break;
             }
