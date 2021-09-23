@@ -13,20 +13,7 @@ namespace Chessington.GameEngine.Pieces
         {
             Square currentSquare = board.FindPiece(this);
 
-            List<Square> newMoves = new List<Square>();
-
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (Math.Abs(i - currentSquare.Row) == Math.Abs(j - currentSquare.Col))
-                    {
-                        newMoves.Add(Square.At(i, j));
-                    }
-                }
-            }
-
-            newMoves.RemoveAll(s => s == Square.At(currentSquare.Row, currentSquare.Col));
+            List<Square> newMoves = Piece.GetBishopMoves(currentSquare);
 
             return newMoves;
         }

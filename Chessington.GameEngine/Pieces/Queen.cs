@@ -15,23 +15,8 @@ namespace Chessington.GameEngine.Pieces
 
             List<Square> newMoves = new List<Square>();
 
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (Math.Abs(i - currentSquare.Row) == Math.Abs(j - currentSquare.Col))
-                    {
-                        newMoves.Add(Square.At(i, j));
-                    }
-
-                    if (i == currentSquare.Row || j == currentSquare.Col)
-                    {
-                        newMoves.Add(Square.At(i, j));
-                    }
-                }
-            }
-
-            newMoves.RemoveAll(s => s == Square.At(currentSquare.Row, currentSquare.Col));
+            newMoves.AddRange(Piece.GetBishopMoves(currentSquare));
+            newMoves.AddRange(Piece.GetRookMoves(currentSquare));
 
             return newMoves;
         }
