@@ -21,68 +21,54 @@ namespace Chessington.GameEngine.Pieces
             board.MovePiece(currentSquare, newSquare);
         }
 
-        public List<Square> GetRookMoves(Board board)
+        public List<Square> GetOrthogonalMoves(Board board)
         {
             Square square = board.FindPiece(this);
             List<Square> newMoves = new List<Square>();
 
-            int leftLim = square.Col - 1;
             for (int col = square.Col - 1; col >= 0; col--)
             {
                 Square checkRow = Square.At(square.Row, col);
                 if (board.GetPiece(checkRow) == null)
-                    leftLim = col;
+                    newMoves.Add(checkRow);
                 else
                     break;
             }
 
-            int rightLim = square.Col + 1;
             for (int col = square.Col + 1; col < 8; col++)
             {
                 Square checkRow = Square.At(square.Row, col);
                 if (board.GetPiece(checkRow) == null)
-                    rightLim = col;
+                    newMoves.Add(checkRow);
                 else
                     break;
             }
 
-            int upLim = square.Row - 1;
             for (int row = square.Row - 1; row >= 0; row--)
             {
                 Square checkCol = Square.At(row, square.Col);
                 if (board.GetPiece(checkCol) == null)
-                    upLim = row;
+                    newMoves.Add(checkCol);
                 else
                     break;
             }
 
-            int downLim = square.Row + 1;
             for (int row = square.Row + 1; row < 8; row++)
             {
                 Square checkCol = Square.At(row, square.Col);
                 if (board.GetPiece(checkCol) == null)
-                    downLim = row;
+                    newMoves.Add(checkCol);
                 else
                     break;
             }
 
-            for (int i = leftLim; i <= rightLim; i++)
-            {
-                newMoves.Add(Square.At(square.Row, i));
-            }
-
-            for (int i = upLim; i <= downLim; i++)
-            {
-                newMoves.Add(Square.At(i, square.Col));
-            }
-
-            // Remove the square that the rook is currently on
+            // Remove the square that the piece is currently on
             newMoves.RemoveAll(s => s == Square.At(square.Row, square.Col));
 
             return newMoves;
         }
 
-        public List<Square> GetBishopMoves(Board board)
+        public List<Square> GetDiagonalMoves(Board board)
         {
             Square square = board.FindPiece(this);
 
