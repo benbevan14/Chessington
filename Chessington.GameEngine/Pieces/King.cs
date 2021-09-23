@@ -24,6 +24,7 @@ namespace Chessington.GameEngine.Pieces
 
             newMoves.RemoveAll(s => s == Square.At(currentSquare.Row, currentSquare.Col));
             newMoves.RemoveAll(s => s.Row < 0 || s.Row > 7 || s.Col < 0 || s.Row > 7);
+            newMoves.RemoveAll(s => board.GetPiece(s) != null && board.GetPiece(s).Player == Player);
 
             return newMoves;
         }
