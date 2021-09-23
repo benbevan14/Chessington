@@ -18,6 +18,10 @@ namespace Chessington.GameEngine.Pieces
             int startRow = this.Player == Player.White ? 6 : 1;
             int dir = this.Player == Player.White ? -1 : 1;
 
+            // Make sure the pawn can't move off the board
+            if (currentSquare.Row + dir < 0 || currentSquare.Row + dir > 7)
+                return new List<Square>();
+
             // If there's a piece in front of the pawn it can't move, so return empty list
             if (board.GetPiece(Square.At(currentSquare.Row + dir, currentSquare.Col)) != null) return newMoves;
 
