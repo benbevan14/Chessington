@@ -71,21 +71,81 @@ namespace Chessington.GameEngine.Pieces
         public List<Square> GetDiagonalMoves(Board board)
         {
             Square square = board.FindPiece(this);
-
             List<Square> newMoves = new List<Square>();
 
-            for (int i = 0; i < 8; i++)
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    for (int j = 0; j < 8; j++)
+            //    {
+            //        if (Math.Abs(i - square.Row) == Math.Abs(j - square.Col))
+            //        {
+            //            newMoves.Add(Square.At(i, j));
+            //        }
+            //    }
+            //}
+
+            //newMoves.RemoveAll(s => s == Square.At(square.Row, square.Col));
+
+
+            // Up-left direction (limit by column)
+            int rowChange = 1;
+            for (int col = square.Col - 1; col >= 0; col--, rowChange++)
             {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (Math.Abs(i - square.Row) == Math.Abs(j - square.Col))
-                    {
-                        newMoves.Add(Square.At(i, j));
-                    }
-                }
+                // Check we haven't gone out the top of the board
+                if (square.Row - rowChange < 0)
+                    break;
+
+                Square checkSq = Square.At(square.Row - rowChange, col);
+                if (board.GetPiece(checkSq) == null)
+                    newMoves.Add(checkSq);
+                else
+                    break;
             }
 
-            newMoves.RemoveAll(s => s == Square.At(square.Row, square.Col));
+            // Up-right direction (limit by column)
+            rowChange = 1;
+            for (int col = square.Col + 1; col < 8; col++, rowChange++)
+            {
+                // Check we haven't gone out the top of the board
+                if (square.Row - rowChange < 0)
+                    break;
+
+                Square checkSq = Square.At(square.Row - rowChange, col);
+                if (board.GetPiece(checkSq) == null)
+                    newMoves.Add(checkSq);
+                else
+                    break;
+            }
+
+            // Down-left direction (limit by column)
+            rowChange = 1;
+            for (int col = square.Col - 1; col >= 0; col--, rowChange++)
+            {
+                // Check we haven't gone out the bottom of the board
+                if (square.Row + rowChange > 7)
+                    break;
+
+                Square checkSq = Square.At(square.Row + rowChange, col);
+                if (board.GetPiece(checkSq) == null)
+                    newMoves.Add(checkSq);
+                else
+                    break;
+            }
+
+            // Down-right direction (limit by column)
+            rowChange = 1;
+            for (int col = square.Col + 1; col < 8; col++, rowChange++)
+            {
+                // Check we haven't gone out the bottom of the board
+                if (square.Row + rowChange > 7)
+                    break;
+
+                Square checkSq = Square.At(square.Row + rowChange, col);
+                if (board.GetPiece(checkSq) == null)
+                    newMoves.Add(checkSq);
+                else
+                    break;
+            }
 
             return newMoves;
         }
