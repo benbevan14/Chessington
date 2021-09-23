@@ -12,7 +12,7 @@ namespace Chessington.GameEngine.Pieces
         {
             Square currentSquare = board.FindPiece(this);
 
-            List<Square> newMoves = Piece.GetRookMoves(currentSquare);
+            List<Square> newMoves = this.GetRookMoves(board);
 
             return newMoves;
         }

@@ -15,8 +15,8 @@ namespace Chessington.GameEngine.Pieces
 
             List<Square> newMoves = new List<Square>();
 
-            newMoves.AddRange(Piece.GetBishopMoves(currentSquare));
-            newMoves.AddRange(Piece.GetRookMoves(currentSquare));
+            newMoves.AddRange(this.GetBishopMoves(board));
+            newMoves.AddRange(this.GetRookMoves(board));
 
             return newMoves;
         }
