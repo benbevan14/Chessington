@@ -12,17 +12,12 @@ namespace Chessington.GameEngine.Pieces
         {
             Square currentSquare = board.FindPiece(this);
 
-            List<Square> newMoves = new List<Square>();
-
             int[] xMoves = new[] {-2, 2, 2, -2, -1, 1, 1, -1};
             int[] yMoves = new[] {-1, 1, -1, 1, 2, 2, -2, -2};
 
-            for (int i = 0; i < xMoves.Length; i++)
-            {
-                newMoves.Add(Square.At(currentSquare.Row + yMoves[i], currentSquare.Col + xMoves[i]));
-            }
+            List<Square> newMoves = xMoves.Select((t, i) => Square.At(currentSquare.Row + yMoves[i], currentSquare.Col + t)).ToList();
 
-            newMoves.RemoveAll(s => (s.Row < 0 && s.Row > 7) || (s.Col < 0 && s.Col > 7));
+            newMoves.RemoveAll(s => s.Row < 0 || s.Row > 7 || s.Col < 0 || s.Col > 7);
 
             return newMoves;
         }
