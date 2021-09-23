@@ -18,7 +18,8 @@ namespace Chessington.GameEngine.Pieces
             List<Square> newMoves = xMoves.Select((t, i) => Square.At(currentSquare.Row + yMoves[i], currentSquare.Col + t)).ToList();
 
             newMoves.RemoveAll(s => s.Row < 0 || s.Row > 7 || s.Col < 0 || s.Col > 7);
-
+            newMoves.RemoveAll(s => board.GetPiece(s) != null && board.GetPiece(s).Player == Player);
+            
             return newMoves;
         }
     }
